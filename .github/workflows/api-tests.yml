@@ -8,9 +8,11 @@ permissions:
 
 env:
   NODE_VERSION: '20'
+  CI: true
 
 jobs:
   api-tests:
+    name: API tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -27,17 +29,11 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Run API tests (spec)
+      - name: Prepare report dirs
+        run: mkdir -p allure-results junit-report
+
+      - name: Run API tests
         run: npm run test:api
-
-      - name: JUnit folder
-        if: always()
-        run: mkdir -p junit-report
-
-      - name: Run API tests (JUnit)
-        if: always()
-        run: |
-          npm run test:api:junit || true
 
       - name: Upload JUnit XML
         if: always()
@@ -45,4 +41,12 @@ jobs:
         with:
           name: junit-report
           path: junit-report/**/*.xml
+          if-no-files-found: ignore
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results/**
           if-no-files-found: ignore
