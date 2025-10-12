@@ -1,0 +1,48 @@
+name: Manual CI - API tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run API tests (spec)
+        run: npm run test:api
+
+      - name: JUnit folder
+        if: always()
+        run: mkdir -p junit-report
+
+      - name: Run API tests (JUnit)
+        if: always()
+        run: |
+          npm run test:api:junit || true
+
+      - name: Upload JUnit XML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-report
+          path: junit-report/**/*.xml
+          if-no-files-found: ignore
