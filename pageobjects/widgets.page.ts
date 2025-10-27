@@ -3,28 +3,58 @@ import { expect } from 'chai';
 
 export class WidgetsPage extends Page {
   // Auto Complete
-  public get multiColorInput() { return $('#autoCompleteMultipleInput'); }
-  public get singleColorInput() { return $('#autoCompleteSingleInput'); }
-  public get multiColorTags() { return $$('.css-12jo7m5.auto-complete__multi-value__label'); }
-  public get multiColorRemoveButtons() { return $$('.css-xb97g8.auto-complete__multi-value__remove'); }
-  public get singleSelectedColor() { return $('.css-1uccc91-singleValue'); }
+  public get multiColorInput() {
+    return $('#autoCompleteMultipleInput');
+  }
+  public get singleColorInput() {
+    return $('#autoCompleteSingleInput');
+  }
+  public get multiColorTags() {
+    return $$('.css-12jo7m5.auto-complete__multi-value__label');
+  }
+  public get multiColorRemoveButtons() {
+    return $$('.css-xb97g8.auto-complete__multi-value__remove');
+  }
+  public get singleSelectedColor() {
+    return $('.css-1uccc91-singleValue');
+  }
 
   // Date Picker locators
-  public get dateInput() { return $('#datePickerMonthYearInput'); }
-  public get dateTimeInput() { return $('#dateAndTimePickerInput'); }
+  public get dateInput() {
+    return $('#datePickerMonthYearInput');
+  }
+  public get dateTimeInput() {
+    return $('#dateAndTimePickerInput');
+  }
 
   // Calendar UI elements
-  public get calendarMonthDropdown() { return $('.react-datepicker__month-select'); }
-  public get calendarYearDropdown() { return $('.react-datepicker__year-select'); }
-  public get calendarDay15() { return $('.react-datepicker__day--015'); }
+  public get calendarMonthDropdown() {
+    return $('.react-datepicker__month-select');
+  }
+  public get calendarYearDropdown() {
+    return $('.react-datepicker__year-select');
+  }
+  public get calendarDay15() {
+    return $('.react-datepicker__day--015');
+  }
 
-  public get sliderInput() { return $('#sliderValue'); }
-  public get sliderHandle() { return $('.range-slider'); }
+  public get sliderInput() {
+    return $('#sliderValue');
+  }
+  public get sliderHandle() {
+    return $('.range-slider');
+  }
 
   // Progress Bar
-  public get progressBarStartButton() { return $('#startStopButton'); }
-  public get progressBarResetButton() { return $('#resetButton'); }
-  public get progressBarFill() { return $('#progressBar'); }
+  public get progressBarStartButton() {
+    return $('#startStopButton');
+  }
+  public get progressBarResetButton() {
+    return $('#resetButton');
+  }
+  public get progressBarFill() {
+    return $('#progressBar');
+  }
 
   /**
    * Opens the specified accordion section.
@@ -217,11 +247,14 @@ export class WidgetsPage extends Page {
    * Waits for the progress bar to reach a specific percent.
    */
   public async waitForProgressToReach(targetPercent: number, timeout = 15000): Promise<void> {
-    await browser.waitUntil(async () => {
-      const progressText = await this.progressBarFill.getText();
-      const current = parseInt(progressText.replace('%', ''), 10);
-      return current >= targetPercent;
-    }, { timeout, timeoutMsg: `Progress bar did not reach ${targetPercent}% in time` });
+    await browser.waitUntil(
+      async () => {
+        const progressText = await this.progressBarFill.getText();
+        const current = parseInt(progressText.replace('%', ''), 10);
+        return current >= targetPercent;
+      },
+      { timeout, timeoutMsg: `Progress bar did not reach ${targetPercent}% in time` },
+    );
   }
 
   /**
@@ -240,8 +273,6 @@ export class WidgetsPage extends Page {
     if (!progressText || !progressText.includes('%')) return 0;
     return parseInt(progressText.replace('%', ''), 10);
   }
-
-
 }
 
 export const widgetsPage = new WidgetsPage();

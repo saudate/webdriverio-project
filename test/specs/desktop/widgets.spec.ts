@@ -3,7 +3,6 @@ import { widgetsPage } from '../../../pageobjects/widgets.page';
 import { expect } from 'chai';
 
 describe('DemoQA Widgets Section', () => {
-
   it('Accordion - should expand all sections and verify content is displayed', async () => {
     await homePage.open();
     await homePage.clickCard(CardName.widgets);
@@ -87,5 +86,4 @@ describe('DemoQA Widgets Section', () => {
     const resetValue = await widgetsPage.getProgressBarValue();
     expect(resetValue).to.equal(0);
   });
-
 });

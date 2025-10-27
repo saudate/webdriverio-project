@@ -14,16 +14,17 @@
     "test:firefox": "wdio wdio.conf/wdio.firefox.conf.ts",
     "test:chromium": "wdio wdio.conf/wdio.chromium.conf.ts",
     "test:chromium:hedless": "wdio wdio.conf/wdio.chromium-hedless.conf.ts",
-
     "test": "wdio wdio.conf/wdio.chromium-hedless.conf.ts",
-
     "allure:generate": "npx allure generate allure-results -o allure-report --clean",
     "allure:open": "npx allure open --host 0.0.0.0 --port 5050 allure-report",
-
     "test:report:serve": "sh -lc 'npm run test; code=$?; npm run allure:generate || true; npm run allure:open; exit $code'",
     "test:report:ci": "sh -lc 'npm run test; code=$?; npm run allure:generate || true; exit $code'",
-
-    "clean:all": "rimraf allure-results allure-report .allure video junit-report"
+    "clean:all": "rimraf allure-results allure-report .allure video junit-report",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -48,7 +49,15 @@
     "wdio-video-reporter": "^6.1.1",
     "wdio-wait-for": "^3.1.0",
     "webdriverio": "^9.12.7",
-    "allure-commandline": "^2.29.0"
+    "allure-commandline": "^2.29.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.2.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.0.0",
+    "typescript-eslint": "^8.46.1"
   },
   "dependencies": {
     "axios": "^1.9.0",

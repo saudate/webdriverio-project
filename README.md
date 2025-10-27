@@ -55,11 +55,13 @@ npm install
 ### UI Tests (Chromium)
 
 Run all UI tests:
+
 ```bash
 npm run test:chromium
 ```
 
 Run specific test groups:
+
 ```bash
 npm run test:elements
 npm run test:forms
@@ -69,11 +71,13 @@ npm run test:interactions
 ```
 
 Run in Chromium Headless:
+
 ```bash
 npm run test:chromium:headless
 ```
 
 Run in Firefox:
+
 ```bash
 npm run test:firefox
 ```
@@ -89,23 +93,24 @@ npm run test:api
 ## 🧾 Allure Reporting
 
 Generate HTML report:
+
 ```bash
 npm run allure:generate
 ```
 
 Open the report in browser:
+
 ```bash
 npm run allure:open
 ```
 
 Clean Allure + video + XML reports:
+
 ```bash
 npm run clean:all
 ```
 
 ---
-
-
 
 ## ✅ Features Covered
 
@@ -142,13 +147,17 @@ It allows you to run tests in a consistent environment locally or in CI/CD.
 ### Quick Start (recommended)
 
 Build the image:
+
 ```bash
 docker compose build
 ```
+
 Run tests and generate the Allure report:
+
 ```bash
 docker compose up --abort-on-container-exit
 ```
+
 Tests will run inside the container.
 
 The Allure report is always generated, even if tests fail.
@@ -158,10 +167,10 @@ The report is available on the host at:
 ```bash
 ./allure-report/index.html
 ```
+
 The container exit code equals the test exit code.
 
-By default, the container exposes the report server on http://localhost:5050.
----
+## By default, the container exposes the report server on http://localhost:5050.
 
 ## 📣 Author
 
@@ -175,4 +184,3 @@ GitHub: [`extrah8`](https://github.com/extrah8)
 - WDIO framework is fully typed with TypeScript.
 - Allure and JUnit reports allow integration with CI/CD pipelines.
 - Utility functions provide reusable data generation and formatting tools.
-

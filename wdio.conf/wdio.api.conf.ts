@@ -15,12 +15,7 @@ export const config: WebdriverIO.Config = {
     {
       browserName: 'chrome',
       'goog:chromeOptions': {
-        args: [
-          '--headless=new',
-          '--no-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-gpu'
-        ],
+        args: ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
       },
       pageLoadStrategy: 'eager',
     },
@@ -30,10 +25,13 @@ export const config: WebdriverIO.Config = {
 
   reporters: [
     'spec',
-    ['junit', {
-      outputDir: 'junit-report',
-      outputFileFormat: (opts: any) => `api-${opts.cid}.xml`
-    }]
+    [
+      'junit',
+      {
+        outputDir: 'junit-report',
+        outputFileFormat: (opts: any) => `api-${opts.cid}.xml`,
+      },
+    ],
   ],
 
   mochaOpts: {

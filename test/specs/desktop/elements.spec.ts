@@ -4,7 +4,6 @@ import { homePage, CardName, ElementsMenuItem } from '../../../pageobjects/home.
 import { elementsPage } from '../../../pageobjects/elements.page';
 
 describe('DemoQA Elements Section', () => {
-
   it('Checkbox - should expand/collapse tree and select a checkbox', async () => {
     await homePage.open();
     await homePage.clickCard(CardName.elements);
@@ -33,12 +32,7 @@ describe('DemoQA Elements Section', () => {
     await homePage.selectElementMenuItem(ElementsMenuItem.textBox);
 
     await elementsPage.verifyFormElementsVisible();
-    await elementsPage.fillForm(
-      'John Doe',
-      'john.doe@example.com',
-      '123 Main St',
-      '456 Another St'
-    );
+    await elementsPage.fillForm('John Doe', 'john.doe@example.com', '123 Main St', '456 Another St');
     await elementsPage.submitForm();
   });
 
@@ -84,14 +78,7 @@ describe('DemoQA Elements Section', () => {
     await elementsPage.verifyColumnHeaders();
     await elementsPage.changeRowsPerPage('50');
 
-    await elementsPage.addNewRecord(
-      'TestName',
-      'TestLastName',
-      'test@example.com',
-      '30',
-      '5000',
-      'QA'
-    );
+    await elementsPage.addNewRecord('TestName', 'TestLastName', 'test@example.com', '30', '5000', 'QA');
 
     await elementsPage.searchRecord('TestName');
     const searchResult = await elementsPage.getTableText();
@@ -104,7 +91,7 @@ describe('DemoQA Elements Section', () => {
       'edited@example.com',
       '31',
       '6000',
-      'Dev'
+      'Dev',
     );
 
     await elementsPage.searchRecord('EditedName');
@@ -116,5 +103,4 @@ describe('DemoQA Elements Section', () => {
     const deletedResult = await elementsPage.getTableText();
     expect(deletedResult).to.not.contain('EditedName');
   });
-
 });

@@ -196,7 +196,7 @@ export class InteractionsPage extends Page {
   public async getSortableListText(): Promise<string[]> {
     const items = await this.sortableListItems;
     const itemsArray = Array.from(items);
-    const resolvedItems = await Promise.all(itemsArray.map(item => item.getText()));
+    const resolvedItems = await Promise.all(itemsArray.map((item) => item.getText()));
     return resolvedItems;
   }
 
@@ -204,7 +204,7 @@ export class InteractionsPage extends Page {
   public async getSortableGridText(): Promise<string[]> {
     const items = await this.sortableGridItems;
     const itemsArray = Array.from(items);
-    const resolvedItems = await Promise.all(itemsArray.map(item => item.getText()));
+    const resolvedItems = await Promise.all(itemsArray.map((item) => item.getText()));
     return resolvedItems;
   }
 
@@ -224,7 +224,7 @@ export class InteractionsPage extends Page {
   public async getListItemClasses(): Promise<string[]> {
     const items = await this.selectableListItems;
     const itemsArray = Array.from(items);
-    const classes = await Promise.all(itemsArray.map(item => item.getAttribute('class')));
+    const classes = await Promise.all(itemsArray.map((item) => item.getAttribute('class')));
     return classes;
   }
 
@@ -232,7 +232,7 @@ export class InteractionsPage extends Page {
   public async getGridItemClasses(): Promise<string[]> {
     const items = await this.selectableGridItems;
     const itemsArray = Array.from(items);
-    const classes = await Promise.all(itemsArray.map(item => item.getAttribute('class')));
+    const classes = await Promise.all(itemsArray.map((item) => item.getAttribute('class')));
     return classes;
   }
 

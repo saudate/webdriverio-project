@@ -85,11 +85,7 @@ export const config: WebdriverIO.Config = {
       if (!passed) {
         try {
           const screenshot = await browser.takeScreenshot();
-          addAttachment(
-            `Screenshot - ${test.title}`,
-            Buffer.from(screenshot, 'base64'),
-            'image/png'
-          );
+          addAttachment(`Screenshot - ${test.title}`, Buffer.from(screenshot, 'base64'), 'image/png');
         } catch {
           // ignore screenshot errors (ECONNREFUSED etc.)
         }
@@ -105,11 +101,7 @@ export const config: WebdriverIO.Config = {
       try {
         const logs = await browser.getLogs('browser');
         if (logs.length) {
-          addAttachment(
-            'Browser Console Logs',
-            JSON.stringify(logs, null, 2),
-            'application/json'
-          );
+          addAttachment('Browser Console Logs', JSON.stringify(logs, null, 2), 'application/json');
         }
       } catch {}
 

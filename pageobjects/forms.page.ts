@@ -4,32 +4,64 @@ import type { ChainablePromiseElement } from 'webdriverio';
 
 export class FormsPage extends Page {
   // Inputs
-  public get inputFirstName() { return $('#firstName'); }
-  public get inputLastName() { return $('#lastName'); }
-  public get inputEmail() { return $('#userEmail'); }
-  public get inputMobileNumber() { return $('#userNumber'); }
-  public get inputDateOfBirth() { return $('#dateOfBirthInput'); }
-  public get inputSubjects() { return $('#subjectsInput'); }
-  public get inputCurrentAddress() { return $('#currentAddress'); }
+  public get inputFirstName() {
+    return $('#firstName');
+  }
+  public get inputLastName() {
+    return $('#lastName');
+  }
+  public get inputEmail() {
+    return $('#userEmail');
+  }
+  public get inputMobileNumber() {
+    return $('#userNumber');
+  }
+  public get inputDateOfBirth() {
+    return $('#dateOfBirthInput');
+  }
+  public get inputSubjects() {
+    return $('#subjectsInput');
+  }
+  public get inputCurrentAddress() {
+    return $('#currentAddress');
+  }
 
   // Upload Picture
-  public get uploadPictureInput() { return $('#uploadPicture'); }
+  public get uploadPictureInput() {
+    return $('#uploadPicture');
+  }
 
   // State and City Dropdowns
-  public get stateDropDown() { return $('#state'); }
-  public get cityDropDown() { return $('#city'); }
+  public get stateDropDown() {
+    return $('#state');
+  }
+  public get cityDropDown() {
+    return $('#city');
+  }
 
   // Submit Button
-  public get submitButton() { return $('#submit'); }
+  public get submitButton() {
+    return $('#submit');
+  }
 
   // Modal After Submit
-  public get modalTitle() { return $('.modal-title'); }
-  public get modalCloseButton() { return $('#closeLargeModal'); }
+  public get modalTitle() {
+    return $('.modal-title');
+  }
+  public get modalCloseButton() {
+    return $('#closeLargeModal');
+  }
 
   /**
    * Fills the basic form inputs.
    */
-  public async fillForm(firstName: string, lastName: string, email: string, mobileNumber: string, currentAddress: string): Promise<void> {
+  public async fillForm(
+    firstName: string,
+    lastName: string,
+    email: string,
+    mobileNumber: string,
+    currentAddress: string,
+  ): Promise<void> {
     await this.inputFirstName.setValue(firstName);
     await this.inputLastName.setValue(lastName);
     await this.inputEmail.setValue(email);
@@ -47,7 +79,7 @@ export class FormsPage extends Page {
     await label.waitForDisplayed({ timeout: 3000 });
     await label.scrollIntoView({ block: 'center' });
     await label.click();
-}
+  }
 
   /**
    * Selects a state from the dropdown.
@@ -157,7 +189,7 @@ export class FormsPage extends Page {
     hobbies: string,
     picture: string,
     address: string,
-    stateAndCity: string
+    stateAndCity: string,
   ): Promise<void> {
     await expect(await this.modalTitle.isDisplayed()).to.be.true;
     expect(await this.modalTitle.getText()).to.equal('Thanks for submitting the form');
@@ -186,14 +218,10 @@ export class FormsPage extends Page {
     expect(await this.inputSubjects.getValue()).to.equal('');
   }
 
-
   /**
    * Waits until the given field is marked invalid (border turns red).
    */
-  public async waitForFieldToBeInvalid(
-    element: ChainablePromiseElement,
-    timeout = 2000
-  ): Promise<void> {
+  public async waitForFieldToBeInvalid(element: ChainablePromiseElement, timeout = 2000): Promise<void> {
     await browser.waitUntil(
       async () => {
         const borderColor = await element.getCSSProperty('border-color');
@@ -202,10 +230,9 @@ export class FormsPage extends Page {
       {
         timeout,
         timeoutMsg: 'Border color did not become #dc3545 within expected time',
-      }
+      },
     );
   }
-  
 }
 
 export const formsPage = new FormsPage();

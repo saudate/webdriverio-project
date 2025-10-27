@@ -6,59 +6,129 @@ import fs from 'fs-extra';
 
 export class ElementsPage extends Page {
   // Inputs
-  public get inputFullName() { return $('#userName'); }
-  public get inputEmail() { return $('#userEmail'); }
-  public get inputCurrentAddress() { return $('#currentAddress'); }
-  public get inputPermanentAddress() { return $('#permanentAddress'); }
+  public get inputFullName() {
+    return $('#userName');
+  }
+  public get inputEmail() {
+    return $('#userEmail');
+  }
+  public get inputCurrentAddress() {
+    return $('#currentAddress');
+  }
+  public get inputPermanentAddress() {
+    return $('#permanentAddress');
+  }
 
   // Labels
-  public get labelFullName() { return $('#userName-label'); }
-  public get labelEmail() { return $('#userEmail-label'); }
-  public get labelCurrentAddress() { return $('#currentAddress-label'); }
-  public get labelPermanentAddress() { return $('#permanentAddress-label'); }
+  public get labelFullName() {
+    return $('#userName-label');
+  }
+  public get labelEmail() {
+    return $('#userEmail-label');
+  }
+  public get labelCurrentAddress() {
+    return $('#currentAddress-label');
+  }
+  public get labelPermanentAddress() {
+    return $('#permanentAddress-label');
+  }
 
   // Submit button
-  public get submitButton() { return $('#submit'); }
+  public get submitButton() {
+    return $('#submit');
+  }
 
   // Expand/Collapse buttons (checkbox tree)
-  public get expandAllButton() { return $('button[aria-label="Expand all"]'); }
-  public get collapseAllButton() { return $('button[aria-label="Collapse all"]'); }
+  public get expandAllButton() {
+    return $('button[aria-label="Expand all"]');
+  }
+  public get collapseAllButton() {
+    return $('button[aria-label="Collapse all"]');
+  }
 
   // Result text after checkbox selection
-  public get resultText() { return $('#result'); }
+  public get resultText() {
+    return $('#result');
+  }
 
   // Upload / Download elements
-  public get downloadButton() { return $('#downloadButton'); }
-  public get uploadInput() { return $('#uploadFile'); }
-  public get uploadedFilePath() { return $('#uploadedFilePath'); }
+  public get downloadButton() {
+    return $('#downloadButton');
+  }
+  public get uploadInput() {
+    return $('#uploadFile');
+  }
+  public get uploadedFilePath() {
+    return $('#uploadedFilePath');
+  }
 
   // Checkbox tree nodes
-  public get desktopNode() { return $('span=Desktop'); }
+  public get desktopNode() {
+    return $('span=Desktop');
+  }
 
   // Radio Buttons
-  public get yesRadio() { return $('#yesRadio'); }
-  public get impressiveRadio() { return $('#impressiveRadio'); }
-  public get noRadio() { return $('#noRadio'); }
-  public get radioResultText() { return $('.text-success'); }
+  public get yesRadio() {
+    return $('#yesRadio');
+  }
+  public get impressiveRadio() {
+    return $('#impressiveRadio');
+  }
+  public get noRadio() {
+    return $('#noRadio');
+  }
+  public get radioResultText() {
+    return $('.text-success');
+  }
 
   // Web Tables Section
-  public get rowsPerPageSelect() { return $('select[aria-label="rows per page"]'); }
-  public get addNewRecordButton() { return $('#addNewRecordButton'); }
-  public get firstNameHeader() { return $('div.rt-resizable-header-content=First Name'); }
-  public get lastNameHeader() { return $('div.rt-resizable-header-content=Last Name'); }
-  public get ageHeader() { return $('div.rt-resizable-header-content=Age'); }
-  public get emailHeader() { return $('div.rt-resizable-header-content=Email'); }
-  public get salaryHeader() { return $('div.rt-resizable-header-content=Salary'); }
-  public get departmentHeader() { return $('div.rt-resizable-header-content=Department'); }
+  public get rowsPerPageSelect() {
+    return $('select[aria-label="rows per page"]');
+  }
+  public get addNewRecordButton() {
+    return $('#addNewRecordButton');
+  }
+  public get firstNameHeader() {
+    return $('div.rt-resizable-header-content=First Name');
+  }
+  public get lastNameHeader() {
+    return $('div.rt-resizable-header-content=Last Name');
+  }
+  public get ageHeader() {
+    return $('div.rt-resizable-header-content=Age');
+  }
+  public get emailHeader() {
+    return $('div.rt-resizable-header-content=Email');
+  }
+  public get salaryHeader() {
+    return $('div.rt-resizable-header-content=Salary');
+  }
+  public get departmentHeader() {
+    return $('div.rt-resizable-header-content=Department');
+  }
 
   // Registration Form
-  public get inputFirstName() { return $('#firstName'); }
-  public get inputLastName() { return $('#lastName'); }
-  public get inputUserEmail() { return $('#userEmail'); }
-  public get inputAge() { return $('#age'); }
-  public get inputSalary() { return $('#salary'); }
-  public get inputDepartment() { return $('#department'); }
-  public get submitButtonForm() { return $('#submit'); }
+  public get inputFirstName() {
+    return $('#firstName');
+  }
+  public get inputLastName() {
+    return $('#lastName');
+  }
+  public get inputUserEmail() {
+    return $('#userEmail');
+  }
+  public get inputAge() {
+    return $('#age');
+  }
+  public get inputSalary() {
+    return $('#salary');
+  }
+  public get inputDepartment() {
+    return $('#department');
+  }
+  public get submitButtonForm() {
+    return $('#submit');
+  }
 
   /** Returns the expand arrow element for a node by its name. */
   public expandArrowByName(name: string) {
@@ -113,7 +183,12 @@ export class ElementsPage extends Page {
   }
 
   /** Fills in the text box form with user input. */
-  public async fillForm(fullName: string, email: string, currentAddress: string, permanentAddress: string): Promise<void> {
+  public async fillForm(
+    fullName: string,
+    email: string,
+    currentAddress: string,
+    permanentAddress: string,
+  ): Promise<void> {
     await this.inputFullName.setValue(fullName);
     await this.inputEmail.setValue(email);
     await this.inputCurrentAddress.setValue(currentAddress);
@@ -121,7 +196,14 @@ export class ElementsPage extends Page {
   }
 
   /** Fills the web table registration form. */
-  public async fillWebTableForm(firstName: string, lastName: string, email: string, age: string, salary: string, department: string): Promise<void> {
+  public async fillWebTableForm(
+    firstName: string,
+    lastName: string,
+    email: string,
+    age: string,
+    salary: string,
+    department: string,
+  ): Promise<void> {
     await this.inputFirstName.setValue(firstName);
     await this.inputLastName.setValue(lastName);
     await this.inputEmail.setValue(email);
@@ -169,15 +251,18 @@ export class ElementsPage extends Page {
     await this.downloadButton.click();
     const downloadDir = path.resolve('./fixtures');
     const fullPath = path.join(downloadDir, expectedFileName);
-    await browser.waitUntil(async () => {
-      const exists = await fs.pathExists(fullPath);
-      if (!exists) return false;
-      const stats = await fs.stat(fullPath);
-      return stats.size > 0;
-    }, {
-      timeout: 10000,
-      timeoutMsg: `Expected file ${expectedFileName} to be downloaded`
-    });
+    await browser.waitUntil(
+      async () => {
+        const exists = await fs.pathExists(fullPath);
+        if (!exists) return false;
+        const stats = await fs.stat(fullPath);
+        return stats.size > 0;
+      },
+      {
+        timeout: 10000,
+        timeoutMsg: `Expected file ${expectedFileName} to be downloaded`,
+      },
+    );
     return fullPath;
   }
 
@@ -192,7 +277,6 @@ export class ElementsPage extends Page {
       await fs.unlink(filePath);
     }
   }
-
 
   /** Checks if a specific radio button is enabled. */
   public async isRadioEnabled(radio: ChainablePromiseElement): Promise<boolean> {
@@ -218,7 +302,14 @@ export class ElementsPage extends Page {
   }
 
   /** Adds a new record to the web table. */
-  public async addNewRecord(firstName: string, lastName: string, email: string, age: string, salary: string, department: string): Promise<void> {
+  public async addNewRecord(
+    firstName: string,
+    lastName: string,
+    email: string,
+    age: string,
+    salary: string,
+    department: string,
+  ): Promise<void> {
     await this.addNewRecordButton.click();
     await this.fillRegistrationForm(firstName, lastName, email, age, salary, department);
   }
@@ -232,7 +323,15 @@ export class ElementsPage extends Page {
   }
 
   /** Edits an existing record in the web table with new data. */
-  public async editRecord(oldName: string, newFirstName: string, newLastName: string, newEmail: string, newAge: string, newSalary: string, newDepartment: string): Promise<void> {
+  public async editRecord(
+    oldName: string,
+    newFirstName: string,
+    newLastName: string,
+    newEmail: string,
+    newAge: string,
+    newSalary: string,
+    newDepartment: string,
+  ): Promise<void> {
     await this.editRecordByName(oldName);
     await this.fillWebTableForm(newFirstName, newLastName, newEmail, newAge, newSalary, newDepartment);
     await this.submitButtonForm.scrollIntoView();
@@ -248,7 +347,14 @@ export class ElementsPage extends Page {
   }
 
   /** Fills the registration form for web table input. */
-  private async fillRegistrationForm(firstName: string, lastName: string, email: string, age: string, salary: string, department: string): Promise<void> {
+  private async fillRegistrationForm(
+    firstName: string,
+    lastName: string,
+    email: string,
+    age: string,
+    salary: string,
+    department: string,
+  ): Promise<void> {
     await this.inputFirstName.setValue(firstName);
     await this.inputLastName.setValue(lastName);
     await this.inputUserEmail.setValue(email);

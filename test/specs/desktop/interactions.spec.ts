@@ -3,7 +3,6 @@ import { homePage, CardName, InteractionsMenuItem } from '../../../pageobjects/h
 import { interactionsPage } from '../../../pageobjects/interactions.page';
 
 describe('DemoQA Interactions Section', () => {
-
   it('Sortable - should allow reordering list items via drag and drop', async () => {
     await homePage.open();
     await homePage.clickCard(CardName.interactions);
@@ -13,10 +12,7 @@ describe('DemoQA Interactions Section', () => {
     const itemsBefore = await interactionsPage.getSortableListText();
     const sortableListItems = await interactionsPage.sortableListItems;
 
-    await interactionsPage.dragElement(
-      await sortableListItems[0],
-      await sortableListItems[4]
-    );
+    await interactionsPage.dragElement(await sortableListItems[0], await sortableListItems[4]);
 
     const itemsAfter = await interactionsPage.getSortableListText();
     expect(itemsAfter).to.not.deep.equal(itemsBefore);
@@ -26,10 +22,7 @@ describe('DemoQA Interactions Section', () => {
     const gridItemsBefore = await interactionsPage.getSortableGridText();
     const sortableGridItems = await interactionsPage.sortableGridItems;
 
-    await interactionsPage.dragElement(
-      await sortableGridItems[0],
-      await sortableGridItems[8]
-    );
+    await interactionsPage.dragElement(await sortableGridItems[0], await sortableGridItems[8]);
 
     const gridItemsAfter = await interactionsPage.getSortableGridText();
     expect(gridItemsAfter).to.not.deep.equal(gridItemsBefore);
@@ -107,7 +100,10 @@ describe('DemoQA Interactions Section', () => {
     const acceptText = await interactionsPage.getDropTargetText(interactionsPage.acceptDropTarget);
     expect(acceptText).to.equal('Dropped!');
 
-    await interactionsPage.performDragAndDrop(interactionsPage.notAcceptableDraggable, interactionsPage.acceptDropTarget);
+    await interactionsPage.performDragAndDrop(
+      interactionsPage.notAcceptableDraggable,
+      interactionsPage.acceptDropTarget,
+    );
     const notAcceptText = await interactionsPage.getDropTargetText(interactionsPage.acceptDropTarget);
     expect(notAcceptText).to.equal('Dropped!');
 
@@ -198,5 +194,4 @@ describe('DemoQA Interactions Section', () => {
     expect(bottomEnd.x).to.be.greaterThan(bottomStart.x);
     expect(bottomEnd.y).to.be.at.least(bottomStart.y);
   });
-
 });

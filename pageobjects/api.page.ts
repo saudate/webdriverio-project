@@ -62,7 +62,7 @@ class ApiPage {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
-      }
+      },
     );
   }
 

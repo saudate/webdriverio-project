@@ -1,13 +1,13 @@
-version: "3.8"
+version: '3.8'
 
 services:
   wdio:
     build: .
     container_name: wdio-tests
-    shm_size: "2gb"
+    shm_size: '2gb'
     environment:
       - BASE_URL=https://demoqa.com
     ports:
-      - "5050:5050"
+      - '5050:5050'
     volumes:
       - ./allure-report:/allure-report

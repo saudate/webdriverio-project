@@ -4,7 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "baseUrl": "./",
-    "types": ["node","mocha", "@wdio/globals/types", "@wdio/mocha-framework", "expect-webdriverio"],
+    "types": ["node", "mocha", "@wdio/globals/types", "@wdio/mocha-framework", "expect-webdriverio"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,11 +14,6 @@
       "@pages/*": ["pageobjects/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "exclude": ["node_modules"]
 }

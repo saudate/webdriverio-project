@@ -6,7 +6,7 @@ export enum CardName {
   alertsFrameWindows = 'Alerts, Frame & Windows',
   widgets = 'Widgets',
   interactions = 'Interactions',
-  bookStoreApplication = 'Book Store Application'
+  bookStoreApplication = 'Book Store Application',
 }
 
 export enum ElementsMenuItem {
@@ -18,11 +18,11 @@ export enum ElementsMenuItem {
   links = 'Links',
   brokenLinksImages = 'Broken Links - Images',
   uploadDownload = 'Upload and Download',
-  dynamicProperties = 'Dynamic Properties'
+  dynamicProperties = 'Dynamic Properties',
 }
 
 export enum FormsMenuItem {
-  practiceForm = 'Practice Form'
+  practiceForm = 'Practice Form',
 }
 
 export enum AlertsFrameWindowsMenuItem {
@@ -30,7 +30,7 @@ export enum AlertsFrameWindowsMenuItem {
   alerts = 'Alerts',
   frames = 'Frames',
   nestedFrames = 'Nested Frames',
-  modalDialogs = 'Modal Dialogs'
+  modalDialogs = 'Modal Dialogs',
 }
 
 export enum WidgetsMenuItem {
@@ -42,7 +42,7 @@ export enum WidgetsMenuItem {
   tabs = 'Tabs',
   toolTips = 'Tool Tips',
   menu = 'Menu',
-  selectMenu = 'Select Menu'
+  selectMenu = 'Select Menu',
 }
 
 export enum InteractionsMenuItem {
@@ -50,7 +50,7 @@ export enum InteractionsMenuItem {
   selectable = 'Selectable',
   resizable = 'Resizable',
   droppable = 'Droppable',
-  dragabble = 'Dragabble'
+  dragabble = 'Dragabble',
 }
 
 export class HomePage extends Page {
@@ -138,15 +138,14 @@ export class HomePage extends Page {
   }
 
   /**
- * Select an item from the Interactions section using enum
- * @param item Menu item from InteractionsMenuItem enum
- */
-public async selectInteractionsMenuItem(item: InteractionsMenuItem): Promise<void> {
-  const element = await $(`//ul[@class='menu-list']//span[text()="${item}"]`);
-  await element.scrollIntoView();
-  await element.click();
-}
-  
+   * Select an item from the Interactions section using enum
+   * @param item Menu item from InteractionsMenuItem enum
+   */
+  public async selectInteractionsMenuItem(item: InteractionsMenuItem): Promise<void> {
+    const element = await $(`//ul[@class='menu-list']//span[text()="${item}"]`);
+    await element.scrollIntoView();
+    await element.click();
+  }
 }
 
 export const homePage = new HomePage();

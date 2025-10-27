@@ -17,7 +17,7 @@ describe('BookStore and User API Flow', () => {
   });
 
   it('should add a new book successfully', async () => {
-  const response = await apiPage.addBook(bookData);
+    const response = await apiPage.addBook(bookData);
     expect(response.status).to.equal(201);
     expect(response.data).to.have.property('books').that.is.an('array');
     expect(response.data.books[0].isbn).to.equal(bookData.isbn);

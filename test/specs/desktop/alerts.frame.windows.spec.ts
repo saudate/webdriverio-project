@@ -3,7 +3,6 @@ import { homePage, CardName, AlertsFrameWindowsMenuItem } from '../../../pageobj
 import { alertsFrameWindowsPage } from '../../../pageobjects/alerts.frame.windows.page';
 
 describe('DemoQA Alerts, Frame & Windows Section', () => {
-
   it('Browser Windows - should handle tab and window navigation', async () => {
     await homePage.open();
     await homePage.clickCard(CardName.alertsFrameWindows);
@@ -62,5 +61,4 @@ describe('DemoQA Alerts, Frame & Windows Section', () => {
     expect(largeModal.title).to.equal('Large Modal');
     expect(largeModal.body).to.include('Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
   });
-
 });

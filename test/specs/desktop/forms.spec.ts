@@ -10,11 +10,10 @@ import {
   subjects,
   hobbies,
   states,
-  cities
+  cities,
 } from '../../../utils/dataGenerator';
 
 describe('DemoQA Forms Section', () => {
-
   it('Should fill Practice Form with random data, validate modal and reset form fields', async () => {
     await homePage.open();
     await homePage.clickCard(CardName.forms);
@@ -26,7 +25,7 @@ describe('DemoQA Forms Section', () => {
     const mobileNumber = randomPhoneNumber();
     const currentAddress = `${randomString(10)} Street`;
     const genders = ['Male', 'Female', 'Other'] as const;
-    type Gender = typeof genders[number];
+    type Gender = (typeof genders)[number];
     const gender: Gender = randomItem([...genders]);
     const selectedSubjects = [randomItem(subjects)];
     const selectedHobbies = [randomItem(hobbies)];
@@ -56,7 +55,7 @@ describe('DemoQA Forms Section', () => {
       selectedHobbies.join(', '),
       'test_img.png',
       currentAddress,
-      `${state} ${city}`
+      `${state} ${city}`,
     );
 
     await formsPage.closeModal();
@@ -90,5 +89,4 @@ describe('DemoQA Forms Section', () => {
     await formsPage.waitForFieldToBeInvalid(formsPage.inputEmail);
     await formsPage.waitForFieldToBeInvalid(formsPage.inputMobileNumber);
   });
-
 });

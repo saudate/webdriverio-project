@@ -3,31 +3,67 @@ import { expect } from 'chai';
 
 class AlertsFrameWindowsPage {
   // Browser Windows
-  public get newTabButton() { return $('#tabButton'); }
-  public get newWindowButton() { return $('#windowButton'); }
-  public get newWindowMessageButton() { return $('#messageWindowButton'); }
+  public get newTabButton() {
+    return $('#tabButton');
+  }
+  public get newWindowButton() {
+    return $('#windowButton');
+  }
+  public get newWindowMessageButton() {
+    return $('#messageWindowButton');
+  }
 
   // Alerts
-  public get alertButton() { return $('#alertButton'); }
-  public get confirmButton() { return $('#confirmButton'); }
-  public get promptButton() { return $('#promtButton'); }
-  public get timedAlertButton() { return $('#timerAlertButton'); }
+  public get alertButton() {
+    return $('#alertButton');
+  }
+  public get confirmButton() {
+    return $('#confirmButton');
+  }
+  public get promptButton() {
+    return $('#promtButton');
+  }
+  public get timedAlertButton() {
+    return $('#timerAlertButton');
+  }
 
-  public get alertResult() { return $('#confirmResult'); }
-  public get promptResult() { return $('#promptResult'); }
+  public get alertResult() {
+    return $('#confirmResult');
+  }
+  public get promptResult() {
+    return $('#promptResult');
+  }
 
   // Frames
-  public get frame1() { return $('#frame1'); }
-  public get frame2() { return $('#frame2'); }
-  public get frameHeading() { return $('#sampleHeading'); }
+  public get frame1() {
+    return $('#frame1');
+  }
+  public get frame2() {
+    return $('#frame2');
+  }
+  public get frameHeading() {
+    return $('#sampleHeading');
+  }
 
   // Modal Dialogs
-  public get smallModalButton() { return $('#showSmallModal'); }
-  public get largeModalButton() { return $('#showLargeModal'); }
-  public get modalTitle() { return $('.modal-title'); }
-  public get modalBody() { return $('.modal-body'); }
-  public get closeSmallModalButton() { return $('#closeSmallModal'); }
-  public get closeLargeModalButton() { return $('#closeLargeModal'); }
+  public get smallModalButton() {
+    return $('#showSmallModal');
+  }
+  public get largeModalButton() {
+    return $('#showLargeModal');
+  }
+  public get modalTitle() {
+    return $('.modal-title');
+  }
+  public get modalBody() {
+    return $('.modal-body');
+  }
+  public get closeSmallModalButton() {
+    return $('#closeSmallModal');
+  }
+  public get closeLargeModalButton() {
+    return $('#closeLargeModal');
+  }
 
   // Methods
 
@@ -38,12 +74,12 @@ class AlertsFrameWindowsPage {
     const originalWindow = await browser.getWindowHandle();
     const handlesBefore = await browser.getWindowHandles();
     await this.newTabButton.click();
-    await browser.waitUntil(
-      async () => (await browser.getWindowHandles()).length > handlesBefore.length,
-      { timeout: 3000, timeoutMsg: 'New tab did not open' }
-    );
+    await browser.waitUntil(async () => (await browser.getWindowHandles()).length > handlesBefore.length, {
+      timeout: 3000,
+      timeoutMsg: 'New tab did not open',
+    });
     const handlesAfter = await browser.getWindowHandles();
-    const newTab = handlesAfter.find(h => !handlesBefore.includes(h));
+    const newTab = handlesAfter.find((h) => !handlesBefore.includes(h));
     await browser.switchToWindow(newTab!);
     const text = await $('h1').getText();
     expect(text).to.equal(expectedText);
@@ -58,12 +94,12 @@ class AlertsFrameWindowsPage {
     const originalWindow = await browser.getWindowHandle();
     const handlesBefore = await browser.getWindowHandles();
     await this.newWindowButton.click();
-    await browser.waitUntil(
-      async () => (await browser.getWindowHandles()).length > handlesBefore.length,
-      { timeout: 3000, timeoutMsg: 'New window did not open' }
-    );
+    await browser.waitUntil(async () => (await browser.getWindowHandles()).length > handlesBefore.length, {
+      timeout: 3000,
+      timeoutMsg: 'New window did not open',
+    });
     const handlesAfter = await browser.getWindowHandles();
-    const newWindow = handlesAfter.find(h => !handlesBefore.includes(h));
+    const newWindow = handlesAfter.find((h) => !handlesBefore.includes(h));
     await browser.switchToWindow(newWindow!);
     const text = await $('h1').getText();
     expect(text).to.equal(expectedText);
@@ -79,19 +115,19 @@ class AlertsFrameWindowsPage {
     const handlesBefore = await browser.getWindowHandles();
     await this.newWindowMessageButton.click();
     await browser.waitUntil(
-        async () => {
-            const now = await browser.getWindowHandles();
-            return now.length > handlesBefore.length;
-        },
-        {
-            timeout: 3000,
-            timeoutMsg: 'Message window did not open',
-        }
+      async () => {
+        const now = await browser.getWindowHandles();
+        return now.length > handlesBefore.length;
+      },
+      {
+        timeout: 3000,
+        timeoutMsg: 'Message window did not open',
+      },
     );
     const handlesAfter = await browser.getWindowHandles();
-    const newWindow = handlesAfter.find(h => !handlesBefore.includes(h));
+    const newWindow = handlesAfter.find((h) => !handlesBefore.includes(h));
     if (!newWindow) {
-        throw new Error('New window handle was not found');
+      throw new Error('New window handle was not found');
     }
     await browser.switchToWindow(newWindow);
     await browser.closeWindow();
@@ -103,10 +139,9 @@ class AlertsFrameWindowsPage {
    */
   public async handleSimpleAlert(expectedText?: string): Promise<void> {
     await this.alertButton.click();
-    const appeared = await browser.waitUntil(
-      async () => await browser.isAlertOpen(),
-      { timeout: 3000, timeoutMsg: 'Alert did not appear' }
-    ).catch(() => false);
+    const appeared = await browser
+      .waitUntil(async () => await browser.isAlertOpen(), { timeout: 3000, timeoutMsg: 'Alert did not appear' })
+      .catch(() => false);
 
     if (!appeared) {
       console.warn('Alert never appeared.');
@@ -137,10 +172,9 @@ class AlertsFrameWindowsPage {
   public async handleConfirmAlert(accept: boolean, expectedText?: string): Promise<void> {
     await this.confirmButton.scrollIntoView();
     await this.confirmButton.click();
-    const appeared = await browser.waitUntil(
-      async () => await browser.isAlertOpen(),
-      { timeout: 3000, timeoutMsg: 'Confirm alert did not appear' }
-    ).catch(() => false);
+    const appeared = await browser
+      .waitUntil(async () => await browser.isAlertOpen(), { timeout: 3000, timeoutMsg: 'Confirm alert did not appear' })
+      .catch(() => false);
     if (!appeared) {
       console.warn('Confirm alert never appeared.');
       return;
@@ -166,10 +200,10 @@ class AlertsFrameWindowsPage {
    * Waits for the alert result to appear with expected text.
    */
   public async waitForAlertResult(expected: string, timeout = 2000): Promise<void> {
-    await browser.waitUntil(
-      async () => (await this.alertResult.getText()) === expected,
-      { timeout, timeoutMsg: `Alert result did not match: ${expected}` }
-    );
+    await browser.waitUntil(async () => (await this.alertResult.getText()) === expected, {
+      timeout,
+      timeoutMsg: `Alert result did not match: ${expected}`,
+    });
   }
 
   /**
@@ -177,10 +211,9 @@ class AlertsFrameWindowsPage {
    */
   public async handleDelayedAlert(expectedText: string, timeout = 7000): Promise<void> {
     await this.timedAlertButton.click();
-    const appeared = await browser.waitUntil(
-      async () => await browser.isAlertOpen(),
-      { timeout, timeoutMsg: 'Delayed alert did not appear' }
-    ).catch(() => false);
+    const appeared = await browser
+      .waitUntil(async () => await browser.isAlertOpen(), { timeout, timeoutMsg: 'Delayed alert did not appear' })
+      .catch(() => false);
     if (!appeared) {
       console.warn('Delayed alert never appeared.');
       return;
