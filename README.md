@@ -1,7 +1,7 @@
 # 📋 DemoQA Test Automation Project
 
 > End-to-end test automation for the [DemoQA](https://demoqa.com) site  
-> Author: **Maksym** [`extrah8`](https://github.com/extrah8)
+> Author: **Maksym** [`saudate`](https://github.com/saudate)
 
 ---
 
@@ -175,7 +175,7 @@ The container exit code equals the test exit code.
 ## 📣 Author
 
 Built and maintained by **Maksym**  
-GitHub: [`extrah8`](https://github.com/extrah8)
+GitHub: [`saudate`](https://github.com/saudate)
 
 ---
 
